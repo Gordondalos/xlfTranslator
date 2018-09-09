@@ -1,0 +1,28 @@
+@import "../styles/variables";
+:host {
+  display: block;
+  height: 100%;
+}
+.d-grid {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-areas:
+    "source translate description";
+}
+
+.source {
+  background-color: $whiteSmoke;
+  grid-area: source;
+  padding: 1rem;
+}
+
+.translate {
+  grid-area: translate;
+  padding: 1rem;
+}
+
+.description {
+  background-color: $whiteSmoke;
+  grid-area: description;
+  padding: 1rem;
+}

@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 .d-grid {
   display: grid;
   width: 100vw;
@@ -6,33 +8,24 @@
   grid-template-rows: 1fr 10fr 1fr;
   grid-template-areas:
     "header header header"
-    "source translate description"
+    "central central central"
     "footer footer footer"
 }
 
 .header {
   grid-area: header;
-  background-color: mediumturquoise;
+  background-color: $white;
   max-height: 80px;
+  border-bottom: 1px solid  $gray;
 }
 
-.source {
-  grid-area: source;
-  background-color: red;
-}
-
-.translate {
-  grid-area: translate;
-  background-color: green;
-}
-
-.description {
-  grid-area: description;
-  background-color: yellow;
+.central {
+  grid-area: central;
 }
 
 .footer {
   grid-area: footer;
-  background-color: pink;
+  background-color: $white;
+  border-top: 1px solid  $gray;
 }
 

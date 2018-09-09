@@ -19,6 +19,14 @@ import { WebviewDirective } from './directives/webview.directive';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { OpenFileComponent } from './open-file/open-file.component';
+import { HeaderComponent } from './header/header.component';
+import { TranslateComponent } from './translate/translate.component';
+import { FooterComponent } from './footer/footer.component';
+import { XlfTranslatorService } from './services/xlf-translator.service';
+import { CommonModule } from '@angular/common';
+import { XlfTranslateModule } from './translate/xlf-transalte.module';
+
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -29,10 +37,15 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     HomeComponent,
-    WebviewDirective
+    WebviewDirective,
+    OpenFileComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
+    XlfTranslateModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
@@ -44,7 +57,10 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [ElectronService],
+  providers: [
+    ElectronService,
+    XlfTranslatorService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

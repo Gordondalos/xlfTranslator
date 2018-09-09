@@ -1,10 +1,25 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, Menu } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
 let win, serve;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
+
+
+function createOpenFileWindow(){
+  const openFileWindow = new BrowserWindow({
+    width: 600,
+    height: 400,
+    title: 'Load file',
+  });
+  openFileWindow.loadURL(url.format({
+    pathname: path.join(__dirname, 'dist/open-file.html'),
+    protocol: 'file:',
+    slashes: true
+  }));
+
+}
 
 function createWindow() {
 
@@ -32,6 +47,38 @@ function createWindow() {
     }));
   }
 
+
+  // Стоим меню из темплейта
+  const mainMenuTemplate = [
+    // {
+    //   label: 'File',
+    //   submenu : [
+    //     {
+    //       label: 'Open translate file',
+    //       click(){
+    //         createOpenFileWindow();
+    //       }
+    //     },
+    //     {
+    //       label: 'Update from sources'
+    //     },
+    //     {
+    //       label: 'Save'
+    //     },
+    //     {
+    //       label: 'Exit',
+    //       accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
+    //       click(){
+    //         app.quit();
+    //       }
+    //     }
+    //   ]
+    // }
+  ];
+
+  const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
+  Menu.setApplicationMenu(mainMenu);
+
   win.webContents.openDevTools();
 
   // Emitted when the window is closed.
@@ -50,6 +97,7 @@ try {
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
   app.on('ready', createWindow);
+
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
