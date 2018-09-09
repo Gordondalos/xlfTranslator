@@ -1,0 +1,38 @@
+.d-grid {
+  display: grid;
+  width: 100vw;
+  height: 100%;
+  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-rows: 1fr 10fr 1fr;
+  grid-template-areas:
+    "header header header"
+    "source translate description"
+    "footer footer footer"
+}
+
+.header {
+  grid-area: header;
+  background-color: mediumturquoise;
+  max-height: 80px;
+}
+
+.source {
+  grid-area: source;
+  background-color: red;
+}
+
+.translate {
+  grid-area: translate;
+  background-color: green;
+}
+
+.description {
+  grid-area: description;
+  background-color: yellow;
+}
+
+.footer {
+  grid-area: footer;
+  background-color: pink;
+}
+
