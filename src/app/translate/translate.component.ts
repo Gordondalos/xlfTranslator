@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ChangeDetectionStrategy } from '@angular/core';
 import { XlfTranslatorService } from '../services/xlf-translator.service';
 import * as _ from 'lodash';
 
@@ -6,7 +6,8 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-translate',
   templateUrl: './translate.component.html',
-  styleUrls: ['./translate.component.scss']
+  styleUrls: ['./translate.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class TranslateComponent implements OnInit {
   show = false;
@@ -24,7 +25,7 @@ export class TranslateComponent implements OnInit {
         console.log(this.arrTranslates);
         this.show = true;
         this.ngzone.run(() => {
-          this.arrTranslates = arrTranslates
+          this.arrTranslates = arrTranslates;
         });
       })
   }

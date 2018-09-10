@@ -76,8 +76,8 @@ function createWindow() {
     // }
   ];
 
-  const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
-  Menu.setApplicationMenu(mainMenu);
+  // const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
+  // Menu.setApplicationMenu(mainMenu);
 
   win.webContents.openDevTools();
 
