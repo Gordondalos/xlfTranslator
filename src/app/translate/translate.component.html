@@ -18,7 +18,25 @@
             {{text.source[0] }}
         </div>
         <div class="translate">
-            {{text.target[0]['_'] }}
+            <div class="d-flex">
+
+                <ng-container *ngIf="!text.target[0]['edit']">
+                    <div class="f-gr-1">
+                        {{text.target[0]['_'] }}
+                    </div>
+                    <i class="fa fa-pencil pointer d-block" (click)="text.target[0]['edit'] = !text.target[0]['edit']" aria-hidden="true"></i>
+                </ng-container>
+
+                <ng-container *ngIf="text.target[0]['edit']">
+                    <textarea class="w-100 h-100 f-gr-1" name="target" type="text" [ngModel]="text.target[0]['_']"></textarea>
+                    <i class="fa fa-floppy-o pointer d-block" (click)="text.target[0]['edit'] = !text.target[0]['edit']" aria-hidden="true"></i>
+                </ng-container>
+
+
+
+            </div>
+
+
         </div>
         <div class="description">
 

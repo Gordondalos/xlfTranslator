@@ -4,6 +4,26 @@
   display: none;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
+.d-flex{
+  display: flex;
+}
+
+.f-gr-1 {
+  flex-grow: 1;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
 
 button, .btn {
   height: 40px;
