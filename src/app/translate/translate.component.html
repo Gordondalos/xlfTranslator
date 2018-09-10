@@ -1,12 +1,12 @@
 <div class="d-grid">
     <div class="source">
-        <b>исходный текст</b>
+        <b>Исходный текст</b>
     </div>
     <div class="translate">
-        <b>перевод</b>
+        <b>Перевод</b>
     </div>
     <div class="description">
-        <b>описание</b>
+        <b>Доп информация</b>
     </div>
 </div>
 
@@ -29,7 +29,7 @@
 
                 <ng-container *ngIf="text.target[0]['edit']">
                     <textarea class="w-100 h-100 f-gr-1" name="target" type="text" [ngModel]="text.target[0]['_']"></textarea>
-                    <i class="fa fa-floppy-o pointer d-block" (click)="text.target[0]['edit'] = !text.target[0]['edit']" aria-hidden="true"></i>
+                    <i class="fa fa-floppy-o pointer d-block" (click)="change(); text.target[0]['edit'] = !text.target[0]['edit']" aria-hidden="true"></i>
                 </ng-container>
 
 

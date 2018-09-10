@@ -30,4 +30,9 @@ export class TranslateComponent implements OnInit {
       })
   }
 
+  change(edit){
+    edit = !edit;
+    console.log(this.arrTranslates);
+  }
+
 }
