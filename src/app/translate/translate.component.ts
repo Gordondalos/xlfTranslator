@@ -49,7 +49,7 @@ export class TranslateComponent implements OnInit {
   }
 
   save() {
-    fs.writeFileSync("./my.xlf", this.dataToSave);
+    fs.writeFileSync("D:/project/xlfTranslator/source.ru-copy.xlf", this.dataToSave);
   }
 
 }

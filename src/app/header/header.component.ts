@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
     elem.onchange = () => {
       const selectedFile: any = document.getElementById('input');
       const file = selectedFile.files[0];
+      console.log(file);
       if (file) {
         this.getFile(file.path);
       }
