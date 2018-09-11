@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone, ChangeDetectionStrategy } from '@angular/core';
 import { XlfTranslatorService } from '../services/xlf-translator.service';
 const js2xmlparser = require("js2xmlparser");
+const fs = require("fs");
 
 @Component({
   selector: 'app-translate',
@@ -36,7 +37,8 @@ export class TranslateComponent implements OnInit {
     const b = a.substr(34, a.length);
     const c = b.substring(0, b.length - 13);
     const d = `<?xml version='1.0' encoding='utf-8'?><xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2"><file source-language="ru" datatype="plaintext" original="ng2.template"><body>${c}</body></file></xliff>`;
-    console.log(d);
+    fs.writeFileSync("./my.xlf", d)
+
   }
 
 }
