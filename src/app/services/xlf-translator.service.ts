@@ -7,6 +7,7 @@ import { Subject } from 'rxjs/internal/Subject';
 export class XlfTranslatorService {
 
   sources = new Subject();
+  saveData = new Subject();
 
   constructor() { }
 }

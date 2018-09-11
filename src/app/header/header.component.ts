@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  getFile(path: string = './load.txt') {
+  getFile(path: string) {
     const parser = new xml2js.Parser();
     fs.readFile(path, (err, data) => {
       parser.parseString(data, (err, result) => {
@@ -46,6 +46,10 @@ export class HeaderComponent implements OnInit {
         this.xlfTranslatorService.sources.next(this.arrTranslates);
       });
     });
+  }
+
+  save(){
+    this.xlfTranslatorService.saveData.next();
   }
 
 }
