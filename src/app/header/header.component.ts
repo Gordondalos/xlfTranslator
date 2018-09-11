@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { XlfTranslatorService } from '../services/xlf-translator.service';
+
 const fs = require("fs");
 const xml2js = require('xml2js');
 
@@ -22,13 +23,13 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  openFile(){
-    const elem =  document.getElementById('input');
+  openFile() {
+    const elem = document.getElementById('input');
     elem.click();
     elem.onchange = () => {
-      const selectedFile : any = document.getElementById('input');
+      const selectedFile: any = document.getElementById('input');
       const file = selectedFile.files[0];
-      if(file){
+      if (file) {
         this.getFile(file.path);
       }
 
@@ -36,7 +37,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getFile(path: string = './load.txt') {
-    var parser = new xml2js.Parser();
+    const parser = new xml2js.Parser();
     fs.readFile(path, (err, data) => {
       parser.parseString(data, (err, result) => {
         console.dir(result);

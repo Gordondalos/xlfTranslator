@@ -75,6 +75,7 @@
     "zone.js": "0.8.26"
   },
   "dependencies": {
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "js2xmlparser": "^3.0.0"
   }
 }
