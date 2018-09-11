@@ -30,8 +30,7 @@ export class TranslateComponent implements OnInit {
       })
   }
 
-  change(edit){
-    edit = !edit;
+  change(res){
     console.log(this.arrTranslates);
   }
 
