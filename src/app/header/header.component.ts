@@ -70,11 +70,9 @@ export class HeaderComponent implements OnInit {
       }
     });
     this.arrTranslates = this.arrUpdateTranslates;
+
     this.sendTranslateToEdit();
   }
-
-
-
 
   openFile(): void {
     const elem = document.getElementById('input');

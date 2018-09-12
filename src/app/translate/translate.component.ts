@@ -44,7 +44,7 @@ export class TranslateComponent implements OnInit {
     this.removeEdit();
     this.writeChanges();
     fs.writeFileSync(path, this.dataToSave);
-    alert('success');
+    alert('Saved successfully');
   }
 
   deleteStartAndSpaces(){

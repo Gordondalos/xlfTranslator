@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<ng-container *ngFor="let text of arrTranslates">
+<ng-container *ngFor="let text of arrTranslates | sortByEmpty">
 
     <div class="d-grid" [ngClass]="{'edit': text.edit}">
         <div class="source">

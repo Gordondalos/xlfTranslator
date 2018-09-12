@@ -21,7 +21,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { OpenFileComponent } from './open-file/open-file.component';
 import { HeaderComponent } from './header/header.component';
-import { TranslateComponent } from './translate/translate.component';
 import { FooterComponent } from './footer/footer.component';
 import { XlfTranslatorService } from './services/xlf-translator.service';
 import { CommonModule } from '@angular/common';
