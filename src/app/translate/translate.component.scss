@@ -17,7 +17,7 @@
 
 .d-grid {
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-columns: 2fr 2fr 350px;
   grid-template-areas:
     "source translate description";
   &:nth-child(even){
@@ -49,6 +49,7 @@
 .description {
   background-color: $whiteSmoke;
   grid-area: description;
+  padding: 0 1rem;
 }
 
 .fa-pencil, .fa-floppy-o {

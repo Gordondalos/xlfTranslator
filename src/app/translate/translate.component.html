@@ -42,7 +42,12 @@
             </div>
         </div>
         <div class="description">
-
+            <span>
+                Translation in a file:
+            </span>
+            <ng-container *ngIf="text['context-group'][0]['context'] && text['context-group'][0]['context'][0]">
+                {{text['context-group'][0]['context'][0]['_']}} (line: {{text['context-group'][0]['context'][1]['_']}})
+            </ng-container>
         </div>
     </div>
 </ng-container>
