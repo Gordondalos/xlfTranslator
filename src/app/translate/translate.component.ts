@@ -19,8 +19,8 @@ export class TranslateComponent implements OnInit {
   constructor(
     private ngzone: NgZone,
     private xlfTranslatorService: XlfTranslatorService,) {
-    this.xlfTranslatorService.saveData.subscribe(() => {
-      this.save();
+    this.xlfTranslatorService.saveData.subscribe((path) => {
+      this.save(path);
     })
   }
 
@@ -48,8 +48,8 @@ export class TranslateComponent implements OnInit {
 
   }
 
-  save() {
-    fs.writeFileSync("D:/project/xlfTranslator/source.ru-copy.xlf", this.dataToSave);
+  save(path) {
+    fs.writeFileSync(path, this.dataToSave);
   }
 
 }

@@ -12,6 +12,7 @@ const xml2js = require('xml2js');
 export class HeaderComponent implements OnInit {
   fs: any;
   arrTranslates: any = [];
+  filePath: string;
 
   constructor(
     private xlfTranslatorService: XlfTranslatorService,
@@ -29,7 +30,7 @@ export class HeaderComponent implements OnInit {
     elem.onchange = () => {
       const selectedFile: any = document.getElementById('input');
       const file = selectedFile.files[0];
-      console.log(file);
+      this.filePath = file.path;
       if (file) {
         this.getFile(file.path);
       }
@@ -50,7 +51,7 @@ export class HeaderComponent implements OnInit {
   }
 
   save(){
-    this.xlfTranslatorService.saveData.next();
+    this.xlfTranslatorService.saveData.next(this.filePath);
   }
 
 }
