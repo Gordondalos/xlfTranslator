@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { XlfTranslatorService } from '../services/xlf-translator.service';
+import * as _ from 'lodash';
 
 const fs = require("fs");
 const xml2js = require('xml2js');
@@ -42,8 +43,19 @@ export class HeaderComponent implements OnInit {
     const parser = new xml2js.Parser();
     fs.readFile(path, (err, data) => {
       parser.parseString(data, (err, result) => {
-        console.dir(result);
         this.arrTranslates = result.xliff.file[0]['body'][0]['trans-unit'];
+        _.each(this.arrTranslates, (item) => {
+          if(!item.target){
+            item.target = [
+              {
+                $: {spate: 'translated'},
+                edit: ['true'],
+                _:''
+              }
+            ];
+          }
+        });
+        console.log(this.arrTranslates);
         console.log('Done');
         this.xlfTranslatorService.sources.next(this.arrTranslates);
       });
