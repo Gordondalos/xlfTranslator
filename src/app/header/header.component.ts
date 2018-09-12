@@ -49,14 +49,12 @@ export class HeaderComponent implements OnInit {
             item.target = [
               {
                 $: {spate: 'translated'},
-                edit: ['true'],
                 _:''
               }
             ];
           }
         });
-        console.log(this.arrTranslates);
-        console.log('Done');
+        console.log('Loaded');
         this.xlfTranslatorService.sources.next(this.arrTranslates);
       });
     });

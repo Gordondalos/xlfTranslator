@@ -1,5 +1,6 @@
 import { Component, OnInit, NgZone, ChangeDetectionStrategy } from '@angular/core';
 import { XlfTranslatorService } from '../services/xlf-translator.service';
+import * as _ from 'lodash';
 
 const js2xmlparser = require("js2xmlparser");
 const fs = require("fs");
@@ -27,10 +28,10 @@ export class TranslateComponent implements OnInit {
   ngOnInit() {
     this.xlfTranslatorService.sources
       .subscribe((arrTranslates) => {
-        console.log('-->', this.arrTranslates);
         this.show = true;
         this.ngzone.run(() => {
           this.arrTranslates = arrTranslates;
+          this.deleteStartAndSpaces();
         });
       })
   }
@@ -40,20 +41,38 @@ export class TranslateComponent implements OnInit {
   }
 
   save(path) {
-    if(!this.dataToSave){
-      this.writeChanges();
-    }
+    this.removeEdit();
+    this.writeChanges();
     fs.writeFileSync(path, this.dataToSave);
+    alert('success');
+  }
+
+  deleteStartAndSpaces(){
+    _.each(this.arrTranslates, (item) => {
+      if(item.target[0]['_']){
+        item.target[0]['_'] = item.target[0]['_'].replace(/^\s*/,'').replace(/\s*$/,'')
+      }
+    });
+  }
+
+  removeEdit(){
+    _.each(this.arrTranslates, (item) => {
+      delete item['edit'];
+    });
   }
 
 
   writeChanges() {
+   this.deleteStartAndSpaces();
     const result = js2xmlparser.parse("trans-unit", this.arrTranslates, { attributeString: '$' });
-    const a = result.replace(/<_>/g, '').replace(/<\/_>/g, '').replace(/\r|\n/g, '');
+    const a = result
+      .replace(/<_>/g, '')
+      .replace(/<\/_>/g, '')
+      .replace(/ {1,}/g," ")
+      .replace(/\r|\n/g, '');
     const b = a.substr(34, a.length);
     const c = b.substring(0, b.length - 13);
     this.dataToSave = `<?xml version='1.0' encoding='utf-8'?><xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2"><file source-language="ru" datatype="plaintext" original="ng2.template"><body>${c}</body></file></xliff>`;
-
   }
 
 }
