@@ -10,8 +10,9 @@ export class SortByEmptyPipe implements PipeTransform {
     if(!value){
       return value;
     }
-    const res = _.sortBy(value, (item) =>  item.target[0]['_']);
-    return res.reverse();
+    const res = (_.sortBy(value, (item) =>  item.target[0]['_'])).reverse();
+    console.log(res);
+    return res;
 
   }
 

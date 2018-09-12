@@ -14,7 +14,7 @@
 
     <div class="d-grid" [ngClass]="{'edit': text.edit}">
         <div class="source">
-            {{text.source[0] }}
+            {{text.source[0] | json }}
         </div>
         <div class="translate">
             <div class="d-flex">
@@ -26,12 +26,16 @@
                        aria-hidden="true"></i>
                 </ng-container>
                 <ng-container *ngIf="text.edit">
-                    <textarea
-                            class="w-100 h-100 f-gr-1"
-                            name="target"
-                            type="text"
-                            [(ngModel)]="text.target[0]['_']">
+                    <div>
+                        <div class="d-flex w-100">{{text.target[0]|json}}</div>
+                        <textarea
+                                class="w-100 h-100 f-gr-1"
+                                name="target"
+                                type="text"
+                                [(ngModel)]="text.target[0]['_']">
                     </textarea>
+                    </div>
+
                     <i class="fa fa-floppy-o pointer d-block"
                        (click)="change(); text.edit = !text.edit" aria-hidden="true"></i>
                 </ng-container>
