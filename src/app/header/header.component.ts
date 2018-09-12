@@ -13,6 +13,7 @@ const xml2js = require('xml2js');
 export class HeaderComponent implements OnInit {
   fs: any;
   arrTranslates: any = [];
+  arrUpdateTranslates: any = [];
   filePath: string;
 
   constructor(
@@ -25,7 +26,57 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  openFile() {
+  updateFile(): void {
+    this.getUpdatefromFile();
+  }
+
+  getUpdatefromFile(): void {
+    const elem = document.getElementById('input');
+    elem.click();
+    elem.onchange = () => {
+      const selectedFile: any = document.getElementById('input');
+      const file = selectedFile.files[0];
+      this.parseDataToObjectUpdate(file.path)
+    }
+  }
+
+  parseDataToObjectUpdate(path){
+    const parser = new xml2js.Parser();
+    fs.readFile(path, (err, data) => {
+      parser.parseString(data, (err, result) => {
+        this.arrUpdateTranslates = result.xliff.file[0]['body'][0]['trans-unit'];
+        _.each(this.arrUpdateTranslates, (item) => {
+          if (!item.target) {
+            item.target = [
+              {
+                $: { spate: 'translated' },
+                _: ''
+              }
+            ];
+          }
+        });
+        this.loadOldTranslate();
+      });
+    });
+  }
+
+  loadOldTranslate(){
+    _.each(this.arrUpdateTranslates, (item) => {
+      const data = _.find(this.arrTranslates, (it) => {
+        return it.source[0] === item.source[0]
+      });
+      if(data){
+        item.target = data.target;
+      }
+    });
+    this.arrTranslates = this.arrUpdateTranslates;
+    this.sendTranslateToEdit();
+  }
+
+
+
+
+  openFile(): void {
     const elem = document.getElementById('input');
     elem.click();
     elem.onchange = () => {
@@ -35,32 +86,38 @@ export class HeaderComponent implements OnInit {
       if (file) {
         this.getFile(file.path);
       }
-
     }
   }
 
-  getFile(path: string) {
+  getFile(path: string, send: boolean = true): void {
     const parser = new xml2js.Parser();
     fs.readFile(path, (err, data) => {
       parser.parseString(data, (err, result) => {
         this.arrTranslates = result.xliff.file[0]['body'][0]['trans-unit'];
         _.each(this.arrTranslates, (item) => {
-          if(!item.target){
+          if (!item.target) {
             item.target = [
               {
-                $: {spate: 'translated'},
-                _:''
+                $: { spate: 'translated' },
+                _: ''
               }
             ];
           }
         });
         console.log('Loaded');
-        this.xlfTranslatorService.sources.next(this.arrTranslates);
+        if(send){
+          this.sendTranslateToEdit();
+        }
+
       });
     });
   }
 
-  save(){
+  sendTranslateToEdit(): void{
+    this.xlfTranslatorService.sources.next(this.arrTranslates);
+  }
+
+  save(): void {
     this.xlfTranslatorService.saveData.next(this.filePath);
   }
 

@@ -12,7 +12,8 @@
           <context context-type="sourcefile">app/main-page/search-hero/search-hero.component.pug</context>
           <context context-type="linenumber">1</context>
         </context-group>
-      </trans-unit><trans-unit id="004b222ff9ef9dd4771b777950ca1d0e4cd4348a" datatype="html">
+      </trans-unit>
+      <trans-unit id="004b222ff9ef9dd4771b777950ca1d0e4cd4348a" datatype="html">
         <source>About</source>
         <context-group purpose="location">
           <context context-type="sourcefile">modules/header/header.component.pug</context>
