@@ -3,28 +3,52 @@
   display: block;
   height: 100%;
 }
+.d-flex{
+  height: 100%;
+  align-items: center;
+  padding: 1rem;
+  textarea {
+    border: none;
+    background-color: transparent;
+    padding: .5rem;
+    outline: 1px solid $info;
+  }
+}
+
 .d-grid {
   display: grid;
   grid-template-columns: 2fr 2fr 1fr;
   grid-template-areas:
     "source translate description";
+  &:nth-child(even){
+    background-color: $success-light;
+    .source {
+      background-color: $success-light;
+    }
+  }
 }
+
 
 .source {
   background-color: $whiteSmoke;
   grid-area: source;
-  padding: 1rem;
+  padding: 1.5rem;
+}
+
+.edit {
+  background-color: $whiteSmoke-blue !important;
+  .source {
+    background-color: $whiteSmoke-blue !important;
+  }
 }
 
 .translate {
   grid-area: translate;
-  padding: 1rem;
 }
 
 .description {
   background-color: $whiteSmoke;
   grid-area: description;
-  padding: 1rem;
 }
 
 .fa-pencil, .fa-floppy-o {

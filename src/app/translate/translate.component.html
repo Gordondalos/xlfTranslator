@@ -1,18 +1,18 @@
 <div class="d-grid">
-    <div class="source">
-        <b>sources</b>
+    <div class="source p-4">
+        <b>Sources</b>
     </div>
-    <div class="translate">
-        <b>target</b>
+    <div class="translate p-4">
+        <b>Target</b>
     </div>
-    <div class="description">
-        <b>information</b>
+    <div class="description p-4">
+        <b>Information</b>
     </div>
 </div>
 
 <ng-container *ngFor="let text of arrTranslates">
 
-    <div class="d-grid">
+    <div class="d-grid" [ngClass]="{'edit': text.edit}">
         <div class="source">
             {{text.source[0] }}
         </div>
